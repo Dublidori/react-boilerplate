@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginAction } from '../redux/auth/authActions';
 
-const LoginPage = () => {
+const HomePage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -93,4 +93,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default HomePage;
