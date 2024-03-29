@@ -1,34 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useEffect } from 'react';
+import Layout from './components/Layout'
+import LoginPage from './pages/Login';
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 function App() {
-  const [count, setCount] = useState(0)
+    const navigate = useNavigate();
+    const loginSuccess = useSelector(state => state.auth.login);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    useEffect(() => {
+        if(loginSuccess){
+            navigate('/');
+        } else {
+            navigate('/login');
+        }
+    }, [loginSuccess, navigate]);
+
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<Layout />} >
+                    {/* Assuming you want to render LoginPage on a specific path like "/login" */}
+                    <Route index element={<LoginPage />} />
+                    {/* If you have other routes, they should be added here */}
+                </Route>
+            </Routes>
+        </>
+    );
 }
 
-export default App
+export default App;
