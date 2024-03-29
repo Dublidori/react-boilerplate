@@ -36,16 +36,6 @@ const LoginPage = () => {
 
     const handleLogin = (event) => {
         event.preventDefault();
-        // Old version using auth.js
-        // login(loginData)
-        //     .then(userData => {
-        //         //TODO receive the token save it globally between the application and encrypt it
-        //         console.log(userData);
-        //         navigate('/lobby');
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
 
         // New version using redux dispatch
         dispatch(LoginAction(loginData));
